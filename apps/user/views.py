@@ -156,8 +156,8 @@ class RegisterView(View):
 
         # 加密用户的身份信息，生成激活token
         serializer = Serializer(settings.SECRET_KEY, 3600)
-        info = {'confirm':user.id}
-        token = serializer.dumps(info) # bytes
+        info = {'confirm': user.id}
+        token = serializer.dumps(info)# bytes
         token = token.decode()
 
         # 发邮件
@@ -230,7 +230,7 @@ class LoginView(View):
                 next_url = request.GET.get('next', reverse('goods:index'))
 
                 # 跳转到next_url
-                response = redirect(next_url) # HttpResponseRedirect
+                response = redirect(next_url)# HttpResponseRedirect
 
                 # 判断是否需要记住用户名
                 remember = request.POST.get('remember')
@@ -282,7 +282,7 @@ class UserInfoView(LoginRequiredMixin, View):
         # sr = StrictRedis(host='172.16.179.130', port='6379', db=9)
         con = get_redis_connection('default')
 
-        history_key = 'history_%d'%user.id
+        history_key = 'history_%d' % user.id
 
         # 获取用户最新浏览的5个商品的id
         sku_ids = con.lrange(history_key, 0, 4) # [2,3,1]
@@ -303,9 +303,9 @@ class UserInfoView(LoginRequiredMixin, View):
             goods_li.append(goods)
 
         # 组织上下文
-        context = {'page':'user',
-                   'address':address,
-                   'goods_li':goods_li}
+        context = {'page': 'user',
+                   'address': address,
+                   'goods_li': goods_li}
 
         # 除了你给模板文件传递的模板变量之外，django框架会把request.user也传给模板文件
         return render(request, 'user_center_info.html', context)
@@ -438,7 +438,7 @@ class AddressView(LoginRequiredMixin, View):
                                is_default=is_default)
 
         # 返回应答,刷新地址页面
-        return redirect(reverse('user:address')) # get请求方式
+        return redirect(reverse('user:address'))# get请求方式
 
 
 
