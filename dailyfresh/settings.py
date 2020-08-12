@@ -85,10 +85,10 @@ WSGI_APPLICATION = 'dailyfresh.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dailyfresh_bj18',
+        'NAME': 'dailyfresh',
         'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': '172.16.179.142',
+        'PASSWORD': 'shiyulong',
+        'HOST': '127.0.0.1',
         'PORT':3306,
     }
 }
